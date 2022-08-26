@@ -1,0 +1,254 @@
+@function tint-color($color, $weight) {
+  @return min(white, $color, $weight);
+}
+
+@import "~bootstrap/scss/functions.scss";
+
+$primary: #63b0e3;
+$secondary: #cbe5f6;
+$warning: #2280bf;
+$danger: #185d8b;
+$success: #97caed;
+$info: #3498db;
+$light: #eef6fc;
+$dark: #0f3a57;
+$body-bg: $light;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "warning": $warning,
+  "danger": $danger,
+  "success": $danger,
+  "light": $light,
+  "info": $info,
+  "dark": $dark,
+);
+
+$position-values: (
+  0: 0,
+  5: 5%,
+  10: 10%,
+  12: 12%,
+  15: 15%,
+  25: 25%,
+  50: 50%,
+  65: 65%,
+  85: 85%,
+);
+
+$spacer: 1rem;
+
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4,
+  7: $spacer * 5,
+  8: $spacer * 6,
+  9: $spacer * 7,
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/variables.scss";
+@import "~bootstrap/scss/mixins.scss";
+@import "~bootstrap/scss/root.scss";
+
+:root {
+  --shadow-dark: 3px 3px 6px rgba(0, 0, 0, 0.16);
+  --shadow-light: -3px -3px 6px rgba(255, 255, 255, 1);
+  --inner-shadow-dark: inset 3px 3px 6px rgba(0, 0, 0, 0.16);
+  --inner-shadow-light: inset -3px -3px 6px rgba(255, 255, 255, 1);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.neo_btn {
+  box-shadow: var(--shadow-dark), var(--shadow-light);
+  transition: all 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  border: none;
+}
+
+.neo_btn_inner {
+  box-shadow: var(--inner-shadow-dark), var(--inner-shadow-light);
+  transition: all 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  border: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.btn:focus,
+.btn:active,
+.form-control:active,
+.btn-close:active,
+.btn-close:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  box-sizing: none;
+}
+
+.form-control,
+.input-group-text,
+.navbar-toggler,
+.btn,
+.btn-close {
+  border: none !important;
+  outline: none !important;
+  background-color: transparent;
+}
+
+// navbar
+
+.navbar.neo_btn {
+  width: 85%;
+  margin: auto;
+  border-radius: 30px;
+}
+
+.navbar-toggler {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+}
+
+.toggler-icon {
+  height: 3px;
+  width: 25px;
+  background: $primary;
+  border-radius: 10px;
+  transition: all 400ms;
+}
+
+.navbar-toggler .bar-1 {
+  transform-origin: top left;
+  transform: translateX(5px) rotate(45deg);
+}
+
+.navbar-toggler .bar-2 {
+  opacity: 0;
+}
+
+.navbar-toggler .bar-3 {
+  transform-origin: bottom left;
+  transform: translateX(5px) rotate(-45deg);
+}
+
+.navbar-toggler.collapsed .bar-1,
+.navbar-toggler.collapsed .bar-3,
+.navbar-toggler.collapsed .bar-2 {
+  transform: translateX(0) rotate(0);
+  opacity: 1;
+}
+
+.nav-link:hover.neo_btn {
+  box-shadow: var(--inner-shadow-dark), var(--inner-shadow-light);
+  color: $primary;
+}
+
+.navbar-nav {
+  transform: translateY(-200%);
+  transition: all 300ms;
+}
+
+.navbar-collapse.show .navbar-nav {
+  transform: translateY(0);
+}
+
+// global changes
+
+.section {
+  min-height: 100vh;
+}
+
+.main {
+  position: relative;
+  top: 10vh;
+}
+
+.intro {
+  display: inline-block;
+  width: 370px;
+}
+
+a:hover.neo_btn {
+  box-shadow: var(--inner-shadow-dark), var(--inner-shadow-light);
+  color: $dark;
+  transform: scale(0.95);
+}
+
+.card {
+  border: none !important;
+  height: 240px;
+}
+
+.project_section .card-title {
+  transform: translateY(20px);
+  opacity: 0;
+  z-index: -5;
+  transition: all 400ms cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.card:hover .card-title {
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+.active {
+  color: $info !important;
+}
+
+.sercive_section,
+.project_section {
+  min-height: auto;
+}
+
+textarea {
+  height: 180px;
+  resize: none;
+}
+
+// about page
+.skills {
+  width: 75%;
+  font-size: 12px;
+}
+
+// media query
+@media screen and (max-width: 768px) {
+  .profile {
+    width: 300px;
+  }
+  .skills {
+    width: 100%;
+  }
+}
+
+@media screen and(min-width:1024px) {
+  .nav-link {
+    width: 150px;
+    height: 80px;
+  }
+
+  .navbar-nav {
+    height: 80vh !important;
+    width: 80vw !important;
+  }
+
+  .nav-link {
+    height: 50px;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+  }
+}
